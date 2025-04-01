@@ -2,7 +2,6 @@ import streamlit as st
 import pickle
 import datetime
 import numpy as np
-import joblib
 import os
 
 st.set_page_config(
