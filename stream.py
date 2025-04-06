@@ -113,8 +113,8 @@ def format_prediction(prediction, location):
             humidity = prediction[3]
             wind_speed = prediction[4]
             event_code = int(prediction[5])  
-            
-        event = event_mapping.get(event_code, "Fog")
+
+            avg_temp = (avg_temp-32)*(5/9)
         
 
 
@@ -186,7 +186,7 @@ if prediction_made or 'formatted_results' in locals():
     st.markdown(f"<p class='centered-text'><b>{location}</b> • {date.strftime('%A, %B %d, %Y')}</p>", unsafe_allow_html=True)
     if location == "Austin" and formatted_results:
         st.markdown(f"<div class='weather-metric'>Predicted Max Temperature: <b>{formatted_results.get('max_temp', '29.42°C')}</b></div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='weather-metric'>Predicted Avg Temperature: <b>{formatted_results.get('avg_temp', '19.83°C')}</b></div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='weather-metric'>Predicted Temperature: <b>{formatted_results.get('avg_temp', '19.83°C')}</b></div>", unsafe_allow_html=True)
         st.markdown(f"<div class='weather-metric'>Predicted Low Temperature: <b>{formatted_results.get('min_temp', '9.78°C')}</b></div>", unsafe_allow_html=True)
         st.markdown(f"<div class='weather-metric'>Predicted Humidity: <b>{formatted_results.get('humidity', '60.80%')}</b></div>", unsafe_allow_html=True)
         st.markdown(f"<div class='weather-metric'>Predicted wind: <b>{formatted_results.get('wind', '3.09 MPH')}</b></div>", unsafe_allow_html=True)
