@@ -113,9 +113,7 @@ def format_prediction(prediction, location):
             humidity = prediction[3]
             wind_speed = prediction[4]
             event_code = int(prediction[5])  
-            avg_temp = (avg_temp-32)*(5/9)
-            max_temp = (avg_temp-32)*(5/9)
-            min_temp = (avg_temp-32)*(5/9)
+            
         event = event_mapping.get(event_code, "Fog")
         
 
