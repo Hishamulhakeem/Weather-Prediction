@@ -115,7 +115,7 @@ def format_prediction(prediction, location):
             event_code = int(prediction[5])  
 
             avg_temp = (avg_temp-32)*(5/9)
-        
+        event = event_mapping.get(event_code, "Fog")        
 
 
         
