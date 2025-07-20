@@ -7,7 +7,7 @@ This application predicts weather conditions for different cities based on machi
 - Uses machine learning models trained using scikit-learn
 - Interactive and simple user interface with Streamlit
 
-Setup:
+# Setup:
 1. Clone the repository:
    git clone https://github.com/Hishamulhakeem/Weather-Prediction.git
    cd Weather-Prediction
@@ -22,7 +22,7 @@ Setup:
    - ClassifierAustin.pkl (Austin weather model)
    - ClassifierBengaluru.pkl (Bengaluru weather model)
 
-Cloud Server Link:
+# Cloud Server Link:
 Access the live demo of the app hosted on Streamlit Cloud:
 https://hishamwetherpred.streamlit.app/
 
