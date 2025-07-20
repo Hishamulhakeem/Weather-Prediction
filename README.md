@@ -1,4 +1,4 @@
-Weather Prediction Application
+## Weather Prediction Application
 
 This application predicts weather conditions for different cities based on machine learning models. The app is built with Python and Streamlit, providing an easy-to-use interface to interact with the model and obtain real-time weather predictions.
 
