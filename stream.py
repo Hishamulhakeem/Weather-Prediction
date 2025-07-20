@@ -126,8 +126,8 @@ def format_prediction(prediction, location):
     else:  
          if len(prediction) >= 5:
             rain = prediction[0]
-            max_temp = prediction[1]-2.89
-            min_temp = prediction[2]-1.63
+            max_temp = prediction[1]-3.49
+            min_temp = prediction[2]-2.26
             humidity = prediction[3]
             wind_speed = prediction[4]
             
