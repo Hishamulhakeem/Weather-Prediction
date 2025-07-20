@@ -2,7 +2,7 @@
 
 This application predicts weather conditions for different cities based on machine learning models. The app is built with Python and Streamlit, providing an easy-to-use interface to interact with the model and obtain real-time weather predictions.
 
-Features:
+# Features:
 - Predicts weather for cities like Austin and Bengaluru
 - Uses machine learning models trained using scikit-learn
 - Interactive and simple user interface with Streamlit
