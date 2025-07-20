@@ -129,14 +129,14 @@ def format_prediction(prediction, location):
             max_temp = prediction[1]-3.50
             min_temp = prediction[2]-1.96
             humidity = prediction[3]
-            wind_speed = prediction[4]
+            wind_speed = prediction[4]-4.36
             
             results = {
                 "rain": f"{rain:.2f}%",
                 "max_temp": f"{round(max_temp)}°C",
                 "min_temp": f"{round(min_temp)}°C",
                 "humidity": f"{round(humidity)}%",
-                "wind": f"{wind_speed:.2f} km/h"
+                "wind": f"{round(wind_speed)} km/h"
             }
     
     return results
