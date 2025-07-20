@@ -2,8 +2,8 @@ import streamlit as st
 import pickle
 import datetime
 import numpy as np
-import os
 import joblib
+import os
 
 st.set_page_config(
     page_title="Weather Prediction App",
@@ -83,7 +83,7 @@ def load_model(location):
                     if location == "Austin":
                         return np.array([[19.83, 29.42, 9.78, 60.80, 3.09, 4]])
                     else:
-                        return np.array([[20.68, 32.52, 0.00]])
+                        return np.array([[20.68, 32.52, 0.00, 70.5, 9.6]])
             return DummyModel()
     except Exception as e:
         st.error(f"Error loading model: {str(e)}")
@@ -112,15 +112,8 @@ def format_prediction(prediction, location):
             min_temp = prediction[2]
             humidity = prediction[3]
             wind_speed = prediction[4]
-            event_code = int(prediction[5])  
-
-            avg_temp = (avg_temp-32)*(5/9)
-            max_temp = (max_temp-32)*(5/9)
-            min_temp = (min_temp-32)*(5/9)
-        
-        event = event_mapping.get(event_code, "Fog")        
-
-
+            event_code = int(prediction[5])            
+        event = event_mapping.get(event_code, "Fog")
         
         results = {
             "avg_temp": f"{avg_temp:.2f}°C",
@@ -131,15 +124,20 @@ def format_prediction(prediction, location):
             "event": event
         }
     else:  
-        if len(prediction) >= 3:
-            min_temp = prediction[2]
+         if len(prediction) >= 5:
+            rain = prediction[0]
             max_temp = prediction[1]
-            rain = prediction[0]        
-        results = {
-            "min_temp": f"{min_temp:.2f}°C",
-            "max_temp": f"{max_temp:.2f}°C",
-            "rain": f"{rain:.2f}%"
-        }
+            min_temp = prediction[2]
+            humidity = prediction[3]
+            wind_speed = prediction[4]
+            
+            results = {
+                "rain": f"{rain:.2f}%",
+                "max_temp": f"{max_temp:.2f}°C",
+                "min_temp": f"{min_temp:.2f}°C",
+                "humidity": f"{humidity:.2f}%",
+                "wind": f"{wind_speed:.2f} km/h"
+            }
     
     return results
 
@@ -189,14 +187,18 @@ if prediction_made or 'formatted_results' in locals():
     st.markdown(f"<p class='centered-text'><b>{location}</b> • {date.strftime('%A, %B %d, %Y')}</p>", unsafe_allow_html=True)
     if location == "Austin" and formatted_results:
         st.markdown(f"<div class='weather-metric'>Predicted Max Temperature: <b>{formatted_results.get('max_temp', '29.42°C')}</b></div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='weather-metric'>Predicted Temperature: <b>{formatted_results.get('avg_temp', '19.83°C')}</b></div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='weather-metric'>Predicted Avg Temperature: <b>{formatted_results.get('avg_temp', '19.83°C')}</b></div>", unsafe_allow_html=True)
         st.markdown(f"<div class='weather-metric'>Predicted Low Temperature: <b>{formatted_results.get('min_temp', '9.78°C')}</b></div>", unsafe_allow_html=True)
         st.markdown(f"<div class='weather-metric'>Predicted Humidity: <b>{formatted_results.get('humidity', '60.80%')}</b></div>", unsafe_allow_html=True)
         st.markdown(f"<div class='weather-metric'>Predicted wind: <b>{formatted_results.get('wind', '3.09 MPH')}</b></div>", unsafe_allow_html=True)
         st.markdown(f"<div class='weather-metric'>Predicted Event : <b>{formatted_results.get('event', 'Fog')}</b></div>", unsafe_allow_html=True)
     elif location == "Bengaluru" and formatted_results:
-        st.markdown(f"<div class='weather-metric'>Predicted Min Temperature: <b>{formatted_results.get('min_temp', '20.68°C')}</b></div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='weather-metric'>Predicted Rainfall: <b>{formatted_results.get('rain', '0.00%')}</b></div>", unsafe_allow_html=True)
         st.markdown(f"<div class='weather-metric'>Predicted Max Temperature: <b>{formatted_results.get('max_temp', '32.52°C')}</b></div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='weather-metric'>Predicted rain meters : <b>{formatted_results.get('rain', '0.00%')}</b></div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='weather-metric'>Predicted Min Temperature: <b>{formatted_results.get('min_temp', '20.68°C')}</b></div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='weather-metric'>Predicted Humidity: <b>{formatted_results.get('humidity', '70.50%')}</b></div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='weather-metric'>Predicted Wind Speed: <b>{formatted_results.get('wind', '9.60 km/h')}</b></div>", unsafe_allow_html=True)
+
+    
     
     st.markdown('</div>', unsafe_allow_html=True)
