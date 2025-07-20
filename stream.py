@@ -193,9 +193,9 @@ if prediction_made or 'formatted_results' in locals():
         st.markdown(f"<div class='weather-metric'>Predicted wind: <b>{formatted_results.get('wind', '3.09 MPH')}</b></div>", unsafe_allow_html=True)
         st.markdown(f"<div class='weather-metric'>Predicted Event : <b>{formatted_results.get('event', 'Fog')}</b></div>", unsafe_allow_html=True)
     elif location == "Bengaluru" and formatted_results:
-        st.markdown(f"<div class='weather-metric'>Predicted Rainfall: <b>{formatted_results.get('rain', '0.00%')}</b></div>", unsafe_allow_html=True)
         st.markdown(f"<div class='weather-metric'>Predicted Max Temperature/ Feels like: <b>{formatted_results.get('max_temp', '32.52°C')}</b></div>", unsafe_allow_html=True)
         st.markdown(f"<div class='weather-metric'>Predicted Min Temperature: <b>{formatted_results.get('min_temp', '20.68°C')}</b></div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='weather-metric'>Predicted Rainfall: <b>{formatted_results.get('rain', '0.00%')}</b></div>", unsafe_allow_html=True)
         st.markdown(f"<div class='weather-metric'>Predicted Humidity: <b>{formatted_results.get('humidity', '70.50%')}</b></div>", unsafe_allow_html=True)
         st.markdown(f"<div class='weather-metric'>Predicted Wind Speed: <b>{formatted_results.get('wind', '9.60 km/h')}</b></div>", unsafe_allow_html=True)
 
